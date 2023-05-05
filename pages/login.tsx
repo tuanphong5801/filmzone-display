@@ -41,8 +41,8 @@ const Login = () => {
 
       <img
         src="https://imgtr.ee/images/2023/05/04/avsKn.png"
-        width={120}
-        height={120}
+        width={110}
+        height={110}
         className="absolute left-2 top-1 h-33 w-33 cursor-pointer md:left-8 md:top-4"
       />
 
