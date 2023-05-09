@@ -64,7 +64,7 @@ export default function Header() {
     <header className={`transition-all ${isScrolled && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <img
-          src="https://imgtr.ee/images/2023/05/04/avsKn.png"
+          src="https://i.postimg.cc/B61gRfvH/logo-removebg-preview.png"
           width={65}
           height={65}
           className="cursor-pointer object-contain"

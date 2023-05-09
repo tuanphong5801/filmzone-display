@@ -40,7 +40,7 @@ const Login = () => {
       />
 
       <img
-        src="https://imgtr.ee/images/2023/05/04/avsKn.png"
+        src="https://i.postimg.cc/B61gRfvH/logo-removebg-preview.png"
         width={110}
         height={110}
         className="absolute left-2 top-1 h-33 w-33 cursor-pointer md:left-8 md:top-4"
