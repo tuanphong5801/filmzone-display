@@ -6,6 +6,7 @@ import {
   User,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 
 import { useRouter } from "next/router";
@@ -17,6 +18,7 @@ interface IAuth {
   signUp: (email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
+  signInWithFacebook: () => Promise<void>;
   logout: () => Promise<void>;
   error: string | null;
   loading: boolean;
@@ -27,6 +29,7 @@ const AuthContext = createContext<IAuth>({
   signUp: async () => {},
   signIn: async () => {},
   signInWithGoogle: async () => {},
+  signInWithFacebook: async () => {},
   logout: async () => {},
   error: null,
   loading: false,
@@ -103,6 +106,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .finally(() => setLoading(false));
   };
 
+  const facebookProvider = new FacebookAuthProvider();
+  const signInWithFacebook = async () => {
+    setLoading(true);
+
+    await signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        setUser(result.user);
+        router.push("/");
+        setLoading(false);
+      })
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  };
+
   const logout = async () => {
     setLoading(true);
 
@@ -121,6 +138,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       signIn,
       loading,
       signInWithGoogle,
+      signInWithFacebook,
       logout,
       error,
     }),

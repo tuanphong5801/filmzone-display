@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 interface Inputs {
   email: string;
@@ -12,7 +12,7 @@ interface Inputs {
 
 const Login = () => {
   const [login, setLogin] = useState(false);
-  const { signIn, signUp, signInWithGoogle } = useAuth();
+  const { signIn, signUp, signInWithGoogle, signInWithFacebook } = useAuth();
 
   const {
     register,
@@ -82,7 +82,8 @@ const Login = () => {
         </div>
 
         <button
-          className="w-full rounded bg-[#4361ee] py-3 font-semibold hover:bg-[#1e43e8] active:bg-[#1e43e8] transition duration-300"
+          className="w-full rounded py-3 font-semibold transition duration-300 bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700"
+          // style={{ background: "linear-gradient(to right, #4361ee, #e50914)"}}
           onClick={() => setLogin(true)}
         >
           Sign In
@@ -94,6 +95,14 @@ const Login = () => {
         >
           <FaGoogle className="mr-2 inline-block" />
           <span className="content-center">Sign In with Google</span>
+        </button>
+
+        <button
+          onClick={signInWithFacebook}
+          className="w-full rounded bg-[#4361ee] py-3 font-semibold hover:bg-[#1e43e8] active:bg-[#1e43e8] transition duration-300"
+        >
+          <FaFacebook className="mr-2 inline-block" />
+          <span className="content-center">Sign In with Facebook</span>
         </button>
 
         <div className="text-[gray]">
