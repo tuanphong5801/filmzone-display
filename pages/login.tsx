@@ -80,15 +80,12 @@ const Login = () => {
             )}
           </label>
         </div>
-
         <button
           className="w-full rounded py-3 font-semibold transition duration-300 bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700"
-          // style={{ background: "linear-gradient(to right, #4361ee, #e50914)"}}
           onClick={() => setLogin(true)}
         >
           Sign In
         </button>
-
         <button
           onClick={signInWithGoogle}
           className="w-full rounded bg-[#dd4b39] py-3 font-semibold hover:bg-[#c23321] active:bg-[#e74b37] transition duration-300"
@@ -96,7 +93,6 @@ const Login = () => {
           <FaGoogle className="mr-2 inline-block" />
           <span className="content-center">Sign In with Google</span>
         </button>
-
         <button
           onClick={signInWithFacebook}
           className="w-full rounded bg-[#4361ee] py-3 font-semibold hover:bg-[#1e43e8] active:bg-[#1e43e8] transition duration-300"
