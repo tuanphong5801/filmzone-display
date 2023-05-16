@@ -4,6 +4,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 import { useRouter } from "next/router";
@@ -14,6 +16,7 @@ interface IAuth {
   user: User | null;
   signUp: (email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   error: string | null;
   loading: boolean;
@@ -23,6 +26,7 @@ const AuthContext = createContext<IAuth>({
   user: null,
   signUp: async () => {},
   signIn: async () => {},
+  signInWithGoogle: async () => {},
   logout: async () => {},
   error: null,
   loading: false,
@@ -85,6 +89,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .finally(() => setLoading(false));
   };
 
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = async () => {
+    setLoading(true);
+
+    await signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        setUser(result.user);
+        router.push("/");
+        setLoading(false);
+      })
+      .catch((error) => setError(error.message))
+      .finally(() => setLoading(false));
+  };
+
   const logout = async () => {
     setLoading(true);
 
@@ -102,6 +120,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       signUp,
       signIn,
       loading,
+      signInWithGoogle,
       logout,
       error,
     }),

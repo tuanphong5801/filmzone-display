@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
+import { FaGoogle } from "react-icons/fa";
 
 interface Inputs {
   email: string;
@@ -11,7 +12,7 @@ interface Inputs {
 
 const Login = () => {
   const [login, setLogin] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, signInWithGoogle } = useAuth();
 
   const {
     register,
@@ -81,10 +82,18 @@ const Login = () => {
         </div>
 
         <button
-          className="w-full rounded bg-[#e50914] py-3 font-semibold hover:bg-[#4361ee] active:bg-[#4361ee] transition duration-300"
+          className="w-full rounded bg-[#4361ee] py-3 font-semibold hover:bg-[#1e43e8] active:bg-[#1e43e8] transition duration-300"
           onClick={() => setLogin(true)}
         >
           Sign In
+        </button>
+
+        <button
+          onClick={signInWithGoogle}
+          className="w-full rounded bg-[#dd4b39] py-3 font-semibold hover:bg-[#c23321] active:bg-[#e74b37] transition duration-300"
+        >
+          <FaGoogle className="mr-2 inline-block" />
+          <span className="content-center">Sign In with Google</span>
         </button>
 
         <div className="text-[gray]">

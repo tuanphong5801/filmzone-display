@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import useAuth from "@/hooks/useAuth";
 import BasicMenu from "./BasicMenu";
 import HomeLink from "@/components/HomeLink";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -100,15 +101,12 @@ export default function Header() {
             </button>
           </div>
         </form>
-        <p className="hidden lg:inline">Kids</p>
 
         <BellIcon className="h-6 w-6" />
 
-        <img
+        <FaSignOutAlt
+          className="cursor-pointer rounded h-6 w-6"
           onClick={logout}
-          src="https://rb.gy/g1pwyx"
-          alt="User Profile"
-          className="cursor-pointer rounded"
         />
       </div>
 
